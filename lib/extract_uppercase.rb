@@ -9,4 +9,4 @@ def extract_uppercase(text)
     return no_chars
 end
 
-puts extract_uppercase("HELLO! LAURA!")
+#puts extract_uppercase("HELLO! LAURA!")
