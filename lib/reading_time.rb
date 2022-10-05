@@ -11,10 +11,10 @@ def reading_time(text)
     text.delete!("!.,?")
     list_of_words = text.split(" ")
     number_of_words = list_of_words.count
-    puts estimated_time = (number_of_words.to_f / 200)
+    estimated_time = (number_of_words.to_f / 200)
 
     return "Estimated time: #{estimated_time} minutes"
 
 end
 
-reading_time("The cat? Sat on the mat. Miaow said the Cat!")
+#reading_time("The cat? Sat on the mat. Miaow said the Cat!")
