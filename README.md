@@ -28,7 +28,3 @@ ___
 - Basic payment implementation though Stripe.
 
 ## 
-
-Changed this in the database branch. - Tom
-Hello from Makers - Danny
-This is another update - AnnaO
