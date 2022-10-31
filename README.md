@@ -27,4 +27,4 @@ ___
 - A ‘chat’ functionality once a space has been booked, allowing users whose space-booking request has been confirmed to chat with the user that owns that space
 - Basic payment implementation though Stripe.
 
-## 
+This is Vicky## 
