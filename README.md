@@ -28,3 +28,5 @@ ___
 - Basic payment implementation though Stripe.
 
 ## 
+
+This is another update - AnnaO
