@@ -3,4 +3,6 @@ CREATE TABLE spaces (
   name text,
   price float,
   description text,
-  availability text)
+  availability text
+  );
+
