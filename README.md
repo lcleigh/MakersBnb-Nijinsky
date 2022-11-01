@@ -31,7 +31,10 @@ ___
 
 ## Instructions to setup the database
 - Navigate to the folder containing the GitHub respository
-- Create a new database called makersbnb using the createdb command
+- Create a new database called makersbnb using the command:
+```
+createdb makersbnb
+```
 - Once the database is created navigate to the seeds folder
 - Use this command to create the tables: 
 ```
