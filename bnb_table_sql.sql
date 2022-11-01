@@ -21,7 +21,7 @@ CREATE TABLE spaces (
 CREATE TABLE requests (
   id SERIAL PRIMARY KEY,
   date date,
-  confirmed boolean,
+  status text,
   account_id int,
   constraint fk_account foreign key(account_id)
     references accounts(id)
