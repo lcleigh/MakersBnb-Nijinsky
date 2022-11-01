@@ -1,13 +1,15 @@
 <html>
-<head>Available Spaces</head>
+<head>
+  <title>Available Spaces</title>
+  </head>
   <body>
     <h1> Feel at home anywhere </h1>
     <p>
         <ul>
             <% @spaces.each do |space| %>
-                <li>
-                <a href='/spaces/<%= space.id %>'<%= space.name %></a>
-                </li>
+            
+                <%= space.name %><br />
+            
             <% end %>
         </ul>
     </p>
