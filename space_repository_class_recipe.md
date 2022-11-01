@@ -9,8 +9,7 @@ If the table is already created in the database, you can skip this step.
 Otherwise, [follow this recipe to design and create the SQL schema for your table](./single_table_design_recipe_template.md).
 
 *In this template, we'll use an example table `students`*
-
-
+spaces: name, price, description, availability
 
 ## 2. Create Test SQL seeds
 
@@ -30,14 +29,14 @@ If seed data is provided (or you already created it), you can skip this step.
 
 TRUNCATE TABLE spaces RESTART IDENTITY;
 
-INSERT INTO spaces (name, price, description, availability, account_id) VALUES ('Treehouse', 200.00, 'Sleep in the trees. See the animals.', 'link to API', '1');
-INSERT INTO spaces (name, price, description, availability, account_id) VALUES ('Lighthouse', 350.00, 'Views of the sea.', 'link to API', '2');
+INSERT INTO spaces (name, price, description, availability) VALUES ('Treehouse', 200.00, 'Sleep in the trees. See the animals.', 'link to API');
+INSERT INTO spaces (name, price, description, availability) VALUES ('Lighthouse', 350.00, 'Views of the sea.', 'link to API');
 ```
 
 Run this SQL file on the database to truncate (empty) the table, and insert the seed data. Be mindful of the fact any existing records in the table will be deleted.
 
 ```bash
-psql -h 127.0.0.1 your_database_name < seeds_{table_name}.sql
+psql -h 127.0.0.1 makersBnB < seeds/seeds_spaces.sql
 ```
 
 ## 3. Define the class names
@@ -45,17 +44,13 @@ psql -h 127.0.0.1 your_database_name < seeds_{table_name}.sql
 Usually, the Model class name will be the capitalised table name (single instead of plural). The same name is then suffixed by `Repository` for the Repository class name.
 
 ```ruby
-# EXAMPLE
-# Table name: artists
 
-# Model class
-# (in lib/artist.rb)
-class Album
+class Space
 end
 
 # Repository class
 
-class AlbumRepository
+class SpaceRepository
 end
 
 
@@ -66,25 +61,15 @@ end
 Define the attributes of your Model class. You can usually map the table columns to the attributes of the class, including primary and foreign keys.
 
 ```ruby
-# EXAMPLE
-# Table name: artists
 
-# Model class
-# (in lib/artist.rb)
 
-class Album
+class Space
 
   # Replace the attributes by your own columns.
-  attr_accessor :title, :release_year, :artist_id
+  attr_accessor :name, :price, :description, :availability
 end
 
-# The keyword attr_accessor is a special Ruby feature
-# which allows us to set and get attributes on an object,
-# here's an example:
-#
-# artist = Artist.new
-# artist.name = 'Dolly Parton'
-# artist.name
+
 ```
 
 *You may choose to test-drive this class, but unless it contains any more logic than the example above, it is probably not needed.*
@@ -102,32 +87,17 @@ Using comments, define the method signatures (arguments and return value) and wh
 # Repository class
 # (in lib/album_repository.rb)
 
-class AlbumRepository
+class SpaceRepository
 
   # Selecting all records
   # No arguments
   def all
     # Executes the SQL query:
-    # SELECT id, name, genre FROM artists;
+    # SELECT name, price, description, availability FROM spaces;
 
-    # Returns an array of Artist objects.
+    # Returns an array of Space objects.
   end
-  # selects a single record
-  # take id an an argumet
-  def find(id)
-    # Executes the SQL query
-    # SELECT id, title, release_year, artist id FROM albums;
-
-    # Returns a single album object
-
-  end
-
-  def create(album)
-    # Executes the SQL query
-    # INSERT INTO albums (title, release_year) VALUES ($1, $2);
-
-    # returns nil
-  end
+  
 
 end
 ```
@@ -142,53 +112,19 @@ These examples will later be encoded as RSpec tests.
 # EXAMPLES
 
 # 1
-# Get all albums
+# Get all spaces
+('Treehouse', 200.00, 'Sleep in the trees. See the animals.', 'link to API')
+repo = SpaceRepository.new
 
-repo = AlbumRepository.new
-
-albums = repo.all
-albums.length => 2
-albums.first.id => '1'
-albums.first.title => 'My Title 1'
-albums.first.release_year => 1978
-albums.first.artist_id => '2'
+spaces = repo.all
+spaces.length => 2
+spaces.first.name => 'Treehouse'
+spaces.first.price => 200.00
+spaces.first.description => 'Sleep in the trees. See the animals.'
+spaces.first.availability => 'link to API'
 
 
-# 2
-# get a single album
 
-repo = AlbumRepository.new
-
-album = repo.find(1)
-album.title => "Spice"
-album.release_year => "1996"
-album.artist_id => "1"
-
-# 3
-# get a single album
-
-repo = AlbumRepository.new
-
-album = repo.find(2)
-album.title => "Madman Across the Water"
-album.release_year => "1971"
-album.artist_id => "2"
-
-# 4
-# create a single album
-
-repo = AlbumRepository.new
-
-album = Album.new
-album.title = "Stripped"
-album.release_year = "2002"
-
-repo.create(album)
-
-albums = repo.all
-albums.last.title => "Stripped"
-albums.last.release_year => "2002"
-# Add more examples for each method
 ```
 
 Encode this example as a test.
@@ -200,19 +136,16 @@ Running the SQL code present in the seed file will empty the table and re-insert
 This is so you get a fresh table contents every time you run the test suite.
 
 ```ruby
-# EXAMPLE
 
-# file: spec/student_repository_spec.rb
-
-def reset_students_table
-  seed_sql = File.read('spec/seeds_students.sql')
-  connection = PG.connect({ host: '127.0.0.1', dbname: 'students' })
+def reset_spaces_table
+  seed_sql = File.read('spec/seeds_spaces.sql')
+  connection = PG.connect({ host: '127.0.0.1', dbname: 'makersBnB' })
   connection.exec(seed_sql)
 end
 
-describe StudentRepository do
+describe SpaceRepository do
   before(:each) do 
-    reset_students_table
+    reset_spaces_table
   end
 
   # (your tests will go here).
