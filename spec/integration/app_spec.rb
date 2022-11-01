@@ -26,7 +26,7 @@ describe Application do
   end
 
   context "/spaces" do
-    it "returns a 200 status code" do
+    it "returns a list of spaces" do
       response = get("/spaces")
       
       expect(response.status).to eq(200)
