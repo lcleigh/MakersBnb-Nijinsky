@@ -30,7 +30,14 @@ ___
 ___
 
 ## Instructions to setup the database
+- Ensure that you have all the dependencies installed. If not check the setup folder for a setup script.
 - Navigate to the folder containing the GitHub respository
-- Create a new database called makersbnb using the createdb command
-- Once the database is created use this command to create the tables: psql -h 127.0.0.1 makersbnb < bnb_table.sql
-
+- Create a new database called makersbnb using the command:
+```
+createdb makersbnb
+```
+- Once the database is created navigate to the seeds folder
+- Use this command to create the tables: 
+```
+psql -h 127.0.0.1 makersbnb < bnb_table.sql
+```
