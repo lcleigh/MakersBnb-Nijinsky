@@ -34,10 +34,10 @@ ___
 - Navigate to the folder containing the GitHub respository
 - Create a new database called makersbnb using the command:
 ```
-createdb makersbnb
+createdb makersBnB
 ```
 - Once the database is created navigate to the seeds folder
 - Use this command to create the tables: 
 ```
-psql -h 127.0.0.1 makersbnb < bnb_table.sql
+psql -h 127.0.0.1 makersBnB < bnb_table.sql
 ```
