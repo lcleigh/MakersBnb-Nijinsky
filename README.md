@@ -30,6 +30,7 @@ ___
 ___
 
 ## Instructions to setup the database
+- Ensure that you have all the dependencies installed. If not check the setup folder for a setup script.
 - Navigate to the folder containing the GitHub respository
 - Create a new database called makersbnb using the command:
 ```
