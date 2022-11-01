@@ -10,5 +10,9 @@ class Application < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
 
+    get '/' do
+      return erb(:index) # links to an index file with the html content
+    end
+
   end
 end
