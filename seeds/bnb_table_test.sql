@@ -5,3 +5,4 @@ CREATE TABLE spaces (
   description text,
   availability text
   );
+
