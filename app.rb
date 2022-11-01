@@ -14,5 +14,9 @@ class Application < Sinatra::Base
       return erb(:index) # links to an index file with the html content
     end
 
+    get '/spaces' do
+      
+      return erb(:spaces) # links to an index file with the html content
+    end
   end
 end
