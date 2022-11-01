@@ -27,4 +27,10 @@ ___
 - A ‘chat’ functionality once a space has been booked, allowing users whose space-booking request has been confirmed to chat with the user that owns that space
 - Basic payment implementation though Stripe.
 
-## 
+___
+
+## Instructions to setup the database
+- Navigate to the folder containing the GitHub respository
+- Create a new database called makersbnb using the createdb command
+- Once the database is created use this command to create the tables: psql -h 127.0.0.1 makersbnb < bnb_table.sql
+
