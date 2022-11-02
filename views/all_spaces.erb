@@ -5,10 +5,15 @@
   <body>
     <h1> Feel at home anywhere </h1>
     <p>
+
+
+
         <ul>
             <% @spaces.each do |space| %>
             
-                <%= space.name %><br />
+
+            <a href="/all_spaces/<%=space.id%>"><%= space.name %></a><br>
+                <!-- <%= space.name %><br /> -->
             
             <% end %>
         </ul>

@@ -17,11 +17,23 @@ class Application < Sinatra::Base
       return erb(:index) # links to an index file with the html content
     end
 
-    get '/spaces' do
+    get '/all_spaces' do
       repo = SpaceRepository.new
       @spaces = repo.all
 
-      return erb(:spaces) # links to an index file with the html content
+      return erb(:all_spaces) # links to an index file with the html content
     end
+
+    get '/all_spaces/:id' do
+      repo = SpaceRepository.new
+      # space_repo = ArtistRepository.new
+  
+      @space = repo.find(params[:id])
+      # @artist = artist_repo.find(@album.artist_id)
+  
+      return erb(:space)
+    end
+  
+
   end
 end

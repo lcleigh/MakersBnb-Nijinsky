@@ -21,16 +21,34 @@ describe Application do
       response = get("/")
 
       expect(response.status).to eq(200)
-      expect(response.body).to include "<a href='/spaces'>View all spaces</a>"
+      expect(response.body).to include "<a href='/all_spaces'>View all spaces</a>"
     end
   end
 
-  context "/spaces" do
+  context "/all_spaces" do
     it "returns a list of spaces" do
-      response = get("/spaces")
+      response = get("/all_spaces")
       
       expect(response.status).to eq(200)
       expect(response.body).to include "Treehouse"
+    end
+  end
+
+  context 'GET /all_spaces/:id' do
+    it 'returns info about space at index 1' do
+      response = get('/all_spaces/1')
+      expect(response.status).to eq(200)
+      expect(response.body).to include ('<h1>Treehouse</h1>')
+      expect(response.body).to include ('Price: 200')
+      expect(response.body).to include ('Sleep in the trees.')
+    end
+
+    it 'returns info about a space at index 2' do
+      response = get('/all_spaces/2')
+      expect(response.status).to eq(200)
+      expect(response.body).to include ('<h1>Lighthouse</h1>')
+      expect(response.body).to include ('Price: 350')
+      expect(response.body).to include ('Views of the sea.')
     end
   end
 end
