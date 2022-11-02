@@ -23,3 +23,19 @@ footer {
 a {
     color: white;
 }
+
+.navbar {
+    background-color: darkblue;
+}
+
+.navbar .max-width{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+li {
+   
+    display: inline;
+    padding: 15px;
+    text-align: center;
+}
