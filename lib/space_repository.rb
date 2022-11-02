@@ -5,7 +5,7 @@ class SpaceRepository
     def all
         spaces = []
 
-        sql = 'SELECT name, price, description, availability FROM spaces;'
+        sql = 'SELECT id, name, price, description, availability FROM spaces;'
         result_set = DatabaseConnection.exec_params(sql, [])
 
         result_set.each do |item|
@@ -17,7 +17,6 @@ class SpaceRepository
             space.availability = item['availability']
       
             spaces << space
-
         end
 
         return spaces
