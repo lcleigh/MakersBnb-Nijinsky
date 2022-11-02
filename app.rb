@@ -51,6 +51,11 @@ class Application < Sinatra::Base
       
       repo.create(@new_account)
       return erb(:post_sign_up)
+  
+    end
+
+    get '/sign_in' do
+      return erb(:sign_in)
     end
   end
 end
