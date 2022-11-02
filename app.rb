@@ -78,5 +78,6 @@ class Application < Sinatra::Base
     
     def invalid_request_parameters? 
       return params[:name]==nil || params[:price]==nil || params[:description]==nil || params[:availability]==nil
+    end
   end
 end
