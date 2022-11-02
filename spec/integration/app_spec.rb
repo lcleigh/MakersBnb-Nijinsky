@@ -62,8 +62,9 @@ describe Application do
 
   context 'POST /sign_up' do
     it 'creates a new user' do
-      response = post('/sign_up', name: 'Stan', email: 'stan@dog.com', password: 'password', phone_number: '123456789')
+      response = post('/sign_up', name: 'Stan', password: 'password', email: 'stan@dog.com', phone: '123456789')
       expect(response.status).to eq(200)
-
+    end
+  end
       
 end
