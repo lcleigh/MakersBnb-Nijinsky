@@ -3,6 +3,8 @@ require 'sinatra/reloader'
 require_relative 'lib/database_connection'
 require_relative 'lib/space_repository'
 require_relative 'lib/space'
+require_relative 'lib/account_repository'
+require_relative 'lib/account'
 
 DatabaseConnection.connect('makersBnB')
 
@@ -34,6 +36,21 @@ class Application < Sinatra::Base
       return erb(:space)
     end
   
+    get '/sign_up' do
+      return erb(:sign_up)
+    end
 
+    post '/sign_up' do
+      repo = AccountRepository.new
+  
+      @new_account = Account.new
+      @new_account.name = params[:name]
+      @new_account.password = params[:password]
+      @new_account.email = params[:email]
+      @new_account.phone = params[:phone]
+      
+      repo.create(@new_account)
+      return erb(:post_sign_up)
+    end
   end
 end

@@ -39,7 +39,7 @@ describe Application do
       response = get('/all_spaces/1')
       expect(response.status).to eq(200)
       expect(response.body).to include ('<h1>Treehouse</h1>')
-      expect(response.body).to include ('Price: 200')
+      expect(response.body).to include ('Price: £200')
       expect(response.body).to include ('Sleep in the trees.')
     end
 
@@ -47,8 +47,24 @@ describe Application do
       response = get('/all_spaces/2')
       expect(response.status).to eq(200)
       expect(response.body).to include ('<h1>Lighthouse</h1>')
-      expect(response.body).to include ('Price: 350')
+      expect(response.body).to include ('Price: £350')
       expect(response.body).to include ('Views of the sea.')
     end
   end
+
+  context 'GET /sign_up' do
+    it 'invites user to sign up for account' do
+      response = get('/sign_up')
+      expect(response.status).to eq(200)
+      expect(response.body).to include ('Create your account')
+    end
+  end
+
+  context 'POST /sign_up' do
+    it 'creates a new user' do
+      response = post('/sign_up', name: 'Stan', password: 'password', email: 'stan@dog.com', phone: '123456789')
+      expect(response.status).to eq(200)
+    end
+  end
+      
 end
