@@ -3,6 +3,7 @@ background-image: linear-gradient(120deg, #064496, #8742f7);
 color: white;
 font-family: 'Montserrat', sans-serif;
 min-height: 100vh;
+text-align: center;
 }
 
 header{
