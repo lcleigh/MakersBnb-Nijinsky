@@ -25,6 +25,10 @@ class Application < Sinatra::Base
 
       return erb(:all_spaces) # links to an index file with the html content
     end
+    
+    get '/all_spaces/new_space' do
+      return erb(:new_space_form)
+    end
 
     get '/all_spaces/:id' do
       repo = SpaceRepository.new
@@ -34,6 +38,25 @@ class Application < Sinatra::Base
       # @artist = artist_repo.find(@album.artist_id)
   
       return erb(:space)
+    end
+
+    post '/all_spaces' do
+      if invalid_request_parameters?
+        status 400
+        return ''
+      end
+
+
+      repo = SpaceRepository.new
+      new_space = Space.new
+      new_space.name = params[:name]
+      new_space.price = params[:price]
+      new_space.description = params[:description]
+      new_space.availability = [:availability]
+      
+      repo.create(new_space)
+
+      return erb(:space_added)
     end
   
     get '/sign_up' do
@@ -52,5 +75,8 @@ class Application < Sinatra::Base
       repo.create(@new_account)
       return erb(:post_sign_up)
     end
+    
+    def invalid_request_parameters? 
+      return params[:name]==nil || params[:price]==nil || params[:description]==nil || params[:availability]==nil
   end
 end
