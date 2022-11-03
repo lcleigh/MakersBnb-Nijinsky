@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'bcrypt'
 require_relative 'lib/database_connection'
 require_relative 'lib/space_repository'
 require_relative 'lib/space'
