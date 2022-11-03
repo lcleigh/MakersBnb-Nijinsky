@@ -34,6 +34,28 @@ describe Application do
     end
   end
 
+  context "POST /all_spaces" do
+
+    it 'should validate space parameters' do
+        response = post('/all_spaces', invalid_name: "House", another_invalid_thing: 123, invalid_param: "Describe", incorrect: "linktoapi")
+
+        expect(response.status).to eq 400
+    end
+
+    it 'returns a success page and creates a new space' do
+        response = post('/all_spaces', name: 'Greenhouse', price: '150', description:'Perfect for exhibitionists', availability: 'linktoapi' )
+
+        expect(response.status).to eq 200
+        expect(response.body).to include 'Get ready to host! Your Space has been added.'
+
+        response = get('/all_spaces')
+    
+        expect(response.body).to include 'Greenhouse'
+
+    end
+  
+  end
+
   context 'GET /all_spaces/:id' do
     it 'returns info about space at index 1' do
       response = get('/all_spaces/1')

@@ -25,6 +25,10 @@ class Application < Sinatra::Base
 
       return erb(:all_spaces) # links to an index file with the html content
     end
+    
+    get '/all_spaces/new_space' do
+      return erb(:new_space_form)
+    end
 
     get '/all_spaces/:id' do
       repo = SpaceRepository.new
@@ -34,6 +38,25 @@ class Application < Sinatra::Base
       # @artist = artist_repo.find(@album.artist_id)
   
       return erb(:space)
+    end
+
+    post '/all_spaces' do
+      if invalid_request_parameters?
+        status 400
+        return ''
+      end
+
+
+      repo = SpaceRepository.new
+      new_space = Space.new
+      new_space.name = params[:name]
+      new_space.price = params[:price]
+      new_space.description = params[:description]
+      new_space.availability = [:availability]
+      
+      repo.create(new_space)
+
+      return erb(:space_added)
     end
   
     get '/sign_up' do
@@ -59,21 +82,6 @@ class Application < Sinatra::Base
     end
 
     post '/sign_in' do
-    #   repo = AccountRepository.new
-    #   #account = Account.new
-
-    #   account = repo.findAccount(email: params[:email], password: params[:password])
-    #   if account.length == 1
-    #     account = account.first
-    #     # response.set_cookie("user_id", value: user.id, expires: Time.now + 60*60*24*365 )
-    #     session["user_id"] = account.id
-    #     redirect '/'
-    #   else
-    #     @error = true
-    #     erb :sign_in
-    #   end
-    # end
-
       repo = AccountRepository.new
       @account = repo.find_by_email(params[:email])
       if @account.password == params[:password]
@@ -82,5 +90,9 @@ class Application < Sinatra::Base
         return erb(:sign_in)
       end
       end
+    
+    def invalid_request_parameters? 
+      return params[:name]==nil || params[:price]==nil || params[:description]==nil || params[:availability]==nil
+    end
   end
 end
