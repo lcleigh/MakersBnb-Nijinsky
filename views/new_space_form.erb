@@ -1,26 +1,20 @@
 <html>
-    
-    <head><title> Add a space</title></head>
-        <body>
-            <form action="/all_spaces" method="POST">
-                <div>
-                    <label> Space name: </label>
-                    <input type="text" name="name">
-                </div>
-                <div>
-                    <label> Price: </label>
-                    <input type="int" name="price">
-                </div>
-                <div>
-                    <label> Description: </label>
-                    <input type="text" name="description">
-                </div>
-                <div>
-                    <label> Availability: </label>
-                    <input type="text" name="availability">
-                </div>
-
-                <input type="submit"/>
-            </form>
-        </body>
+  <head>
+  <title>Add a space</title>
+</head>
+<h1>List your space here to start sharing it with the world!</h1>
+<form method='POST' action='/all_spaces'/>
+    <label>Space name:</label><br />
+        <input type='text' name='name'/><br />
+    <label>Price:</label><br />
+        <input type='int' name='price'/><br />
+    <label>Description:</label><br />    
+        <input type='text' name='description'/><br />
+    <label>Availability:</label><br />    
+        <input type='text' name='availability'/><br />
+    <br />
+        <input type='Submit' value='Submit'/>
+</form>
+ 
+  </body>
 </html>
