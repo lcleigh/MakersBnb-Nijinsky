@@ -21,7 +21,7 @@ end
         expect(spaces.first.name).to eq 'Treehouse'
         expect(spaces.first.price).to eq 200.00
         expect(spaces.first.description).to eq 'Sleep in the trees. See the animals.'
-        expect(spaces.first.availability).to eq 'link to API'
+        expect(spaces.first.availability).to include ('SuperSaaS')
     end
 
    
