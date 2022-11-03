@@ -74,7 +74,22 @@ class Application < Sinatra::Base
       
       repo.create(@new_account)
       return erb(:post_sign_up)
+  
     end
+
+    get '/sign_in' do
+      return erb(:sign_in)
+    end
+
+    post '/sign_in' do
+      repo = AccountRepository.new
+      @account = repo.find_by_email(params[:email])
+      if @account.password == params[:password]
+        return erb(:post_sign_in)
+      else
+        return erb(:sign_in)
+      end
+      end
     
     def invalid_request_parameters? 
       return params[:name]==nil || params[:price]==nil || params[:description]==nil || params[:availability]==nil

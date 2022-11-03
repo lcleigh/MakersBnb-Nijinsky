@@ -40,4 +40,22 @@ describe AccountRepository do
     expect(accounts.length).to eq(3)
     expect(accounts.last.name).to eq('AnnaO')
   end
+
+  it 'finds account by email' do
+    repo = AccountRepository.new
+    email = 'dannyw@makers.bnb'
+
+    result = repo.find_by_email(email)
+    account = result.email
+    expect(account).to eq('dannyw@makers.bnb')
+  end
+  
+  it 'finds account password' do
+    repo = AccountRepository.new
+    email = 'dannyw@makers.bnb'
+
+    result = repo.find_by_email(email)
+    account = result.password
+    expect(account).to eq('pa55word!')
+  end
 end

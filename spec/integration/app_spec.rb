@@ -88,5 +88,12 @@ describe Application do
       expect(response.status).to eq(200)
     end
   end
-      
+
+  context 'GET /sign_in' do
+    it 'should allow you to sign in' do
+      response = get('/sign_in')
+      expect(response.status).to eq(200)
+      expect(response.body).to include ('Login to your account')
+    end
+  end
 end
