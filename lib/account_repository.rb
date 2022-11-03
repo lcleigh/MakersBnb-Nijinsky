@@ -37,11 +37,12 @@ class AccountRepository
     end
 
     def create(account)
+        encrypted_password = BCrypt::Password.create(account.password)
+
         sql = 'INSERT INTO accounts (name, password, email, phone) VALUES ($1, $2, $3, $4);'
-        result_set = DatabaseConnection.exec_params(
-            sql, [account.name, account.password, 
-            account.email, account.phone]
-        )
+        params = [account.name, encrypted_password, account.email, account.phone]
+        
+        result_set = DatabaseConnection.exec_params(sql, params)
     end
 
     def find_by_email(email)

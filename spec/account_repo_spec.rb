@@ -56,6 +56,7 @@ describe AccountRepository do
 
     result = repo.find_by_email(email)
     account = result.password
-    expect(account).to eq('pa55word!')
+    expect(account).to eq('$2a$12$sLTKZiozTwGIpKzLI6ZE9O3dXsWawEsGxmQ/O.vjVNTWq0HIhA3WC')
   end
+
 end
