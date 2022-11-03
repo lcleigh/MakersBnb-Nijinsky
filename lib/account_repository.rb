@@ -43,4 +43,16 @@ class AccountRepository
             account.email, account.phone]
         )
     end
+
+    def find_by_email(email)
+        sql = 'SELECT email, password FROM accounts WHERE email = $1'
+        result_set = DatabaseConnection.exec_params(sql, [email])
+
+        account = Account.new
+        account.email = result_set[0]['email'] # Retrieve the email from the account database
+        account.password = result_set[0]['password']
+
+        return account
+    end
+
 end

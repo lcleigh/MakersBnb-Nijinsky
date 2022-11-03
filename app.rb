@@ -57,5 +57,30 @@ class Application < Sinatra::Base
     get '/sign_in' do
       return erb(:sign_in)
     end
+
+    post '/sign_in' do
+    #   repo = AccountRepository.new
+    #   #account = Account.new
+
+    #   account = repo.findAccount(email: params[:email], password: params[:password])
+    #   if account.length == 1
+    #     account = account.first
+    #     # response.set_cookie("user_id", value: user.id, expires: Time.now + 60*60*24*365 )
+    #     session["user_id"] = account.id
+    #     redirect '/'
+    #   else
+    #     @error = true
+    #     erb :sign_in
+    #   end
+    # end
+
+      repo = AccountRepository.new
+      @account = repo.find_by_email(params[:email])
+      if @account.password == params[:password]
+        return erb(:post_sign_in)
+      else
+        return erb(:sign_in)
+      end
+      end
   end
 end
