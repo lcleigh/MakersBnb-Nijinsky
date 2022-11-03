@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'sinatra/session'
 require 'bcrypt'
 require_relative 'lib/database_connection'
 require_relative 'lib/space_repository'
@@ -10,13 +11,13 @@ require_relative 'lib/account'
 DatabaseConnection.connect('makersBnB')
 
 class Application < Sinatra::Base
-  # Enable sessions
-  enable :sessions
+
 
   # This allows the app code to refresh
   # without having to restart the server.
   configure :development do
     register Sinatra::Reloader
+    register Sinatra::Session
     also_reload 'lib/space_repository.rb'
 
     get '/' do
@@ -122,8 +123,6 @@ class Application < Sinatra::Base
       session_end!
       return erb(:sign_out)
     end
-
-    
 
     def invalid_request_parameters? 
       return params[:name]==nil || params[:price]==nil || params[:description]==nil || params[:availability]==nil

@@ -18,13 +18,13 @@
             <ul class="menu">
                 <li id= 'main-menu'><a href="/" class="menu-btn">Home</a></li>
                 <li id= 'main-menu'><a href="/all_spaces" class="menu-btn">Spaces</a></li>
-                <%# <% if session? %> %>
+                <% if session? %>
                 <li id= 'main-menu'><a href="/sign_out" class="menu-btn">Sign Out</a></li>
                 <li id= 'main-menu'><a href="/user_homepage" class="menu-btn">My Account</a></li>
-                <%# <% else %> %>
+                <% else %>
                 <li id= 'main-menu'><a href="/sign_in" class="menu-btn">Sign In</a></li>
                 <li id= 'main-menu'><a href="/sign_up" class="menu-btn">Sign Up</a></li>
-                <%# <% end %> %>
+                <% end %>
             </ul>
             
         </div>
