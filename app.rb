@@ -10,6 +10,9 @@ require_relative 'lib/account'
 DatabaseConnection.connect('makersBnB')
 
 class Application < Sinatra::Base
+  # Enable sessions
+  enable :sessions
+
   # This allows the app code to refresh
   # without having to restart the server.
   configure :development do
@@ -21,6 +24,15 @@ class Application < Sinatra::Base
     end
 
     get '/all_spaces' do
+      # if session[:user_id] == nil
+      #   # No user id in the session
+      #   # so the user is not logged in.
+      #   return redirect('/sign_in')
+      # else
+      #   # The user is logged in, display 
+      #   # their account page.
+      #   return erb(:account)
+      # end
       repo = SpaceRepository.new
       @spaces = repo.all
 
@@ -85,13 +97,16 @@ class Application < Sinatra::Base
     post '/sign_in' do
       repo = AccountRepository.new
       @account = repo.find_by_email(params[:email])
-      if @account.password == params[:password]
+
+      if BCrypt::Password.new(@account.password) == params[:password]
         return erb(:post_sign_in)
       else
         return erb(:sign_in)
       end
       end
+
     
+
     def invalid_request_parameters? 
       return params[:name]==nil || params[:price]==nil || params[:description]==nil || params[:availability]==nil
     end
