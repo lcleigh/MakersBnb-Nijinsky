@@ -7,9 +7,11 @@
       Description: <%=@space.description%><br>
       Price: £<%=@space.price%> 
     </p>
+    <% if session? %>
     <p>
       <%=@space.availability%>
     </p>
+    <% end %>
   </body>
   <a href="/all_spaces">Back</a><br>
    
