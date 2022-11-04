@@ -22,6 +22,7 @@ end
         expect(spaces.first.price).to eq 200.00
         expect(spaces.first.description).to eq 'Sleep in the trees. See the animals.'
         expect(spaces.first.availability).to include '<script src="https://cdn.supersaas.net/widget.js"></script>'
+
     end
 
    
