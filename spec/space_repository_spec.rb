@@ -21,11 +21,7 @@ end
         expect(spaces.first.name).to eq 'Treehouse'
         expect(spaces.first.price).to eq 200.00
         expect(spaces.first.description).to eq 'Sleep in the trees. See the animals.'
-<<<<<<< HEAD
         expect(spaces.first.availability).to include '<script src="https://cdn.supersaas.net/widget.js"></script>'
-=======
-        expect(spaces.first.availability).to include ('SuperSaaS')
->>>>>>> 670d3a4 (Updates respec to reflect new api link to calendar)
     end
 
    
