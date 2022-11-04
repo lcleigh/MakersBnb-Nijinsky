@@ -52,7 +52,7 @@ class Application < Sinatra::Base
     get '/all_spaces/:id' do
       repo = SpaceRepository.new
       # space_repo = ArtistRepository.new
-  
+      
       @space = repo.find(params[:id])
  
   
@@ -72,6 +72,7 @@ class Application < Sinatra::Base
       new_space.price = params[:price]
       new_space.description = params[:description]
       new_space.availability = [:availability]
+      new_space.account_id = session[:user_id]
       
       repo.create(new_space)
 
@@ -103,6 +104,9 @@ class Application < Sinatra::Base
     end
 
     get '/user_homepage' do
+      repo = SpaceRepository.new_account
+      @spaces = repo.all
+
       return erb(:user_homepage)
     end
 
