@@ -37,7 +37,6 @@ GEM
       rack-protection (= 3.0.2)
       sinatra (= 3.0.2)
       tilt (~> 2.0)
-    sinatra-session (~> 1.0)
     tilt (2.0.11)
     webrick (1.7.0)
 
@@ -56,4 +55,4 @@ DEPENDENCIES
   webrick (~> 1.7)
 
 BUNDLED WITH
-   2.3.24
+   2.3.25
