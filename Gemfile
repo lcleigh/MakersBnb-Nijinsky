@@ -16,4 +16,3 @@ gem "pg", "~> 1.4"
 gem "bcrypt", "~> 3.1"
 
 gem "sinatra-session", "~> 1.0"
-gem "rack", "~> 2.2.4"
