@@ -1,0 +1,14 @@
+<% if @error %>
+    <div class="error">Login failed.</div>
+<% end %>
+Book your stay at <%= @space.name %>
+<form action="/all_spaces/:id/book" method="post">
+
+    <input type="email" name="email" placeholder="Email" />
+    <input type="password" name="password" placeholder="<%= @space.name %>" />
+
+    <input type="submit" name="button" value="Book!" />
+
+</form>
+  </body>
+</html>

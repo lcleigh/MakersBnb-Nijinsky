@@ -51,7 +51,6 @@ class Application < Sinatra::Base
 
     get '/all_spaces/:id' do
       repo = SpaceRepository.new
-      # space_repo = ArtistRepository.new
       
       @space = repo.find(params[:id])
  
@@ -104,8 +103,11 @@ class Application < Sinatra::Base
     end
 
     get '/user_homepage' do
-      repo = SpaceRepository.new_account
+      repo = SpaceRepository.new
+      user_repo = AccountRepository.new
+
       @spaces = repo.all
+      @user = user_repo.find(@spaces[0].account_id)
 
       return erb(:user_homepage)
     end
@@ -128,6 +130,20 @@ class Application < Sinatra::Base
       return erb(:sign_out)
     end
 
+    get '/book' do
+      repo = SpaceRepository.new
+      @space = repo.all
+      return erb(:book)
+    end
+    # return a POST method that allows user to book a space
+    post '/all_spaces/:id/book' do
+      repo = SpaceRepository.new
+      @space = repo.find(params[:id])
+      @space.availability = false
+      repo.update(@space)
+      return erb(:space_booked)
+    end
+    
     def invalid_request_parameters? 
       return params[:name]==nil || params[:price]==nil || params[:description]==nil || params[:availability]==nil
     end

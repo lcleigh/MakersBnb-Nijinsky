@@ -21,11 +21,9 @@ end
         expect(spaces.first.name).to eq 'Treehouse'
         expect(spaces.first.price).to eq 200.00
         expect(spaces.first.description).to eq 'Sleep in the trees. See the animals.'
-<<<<<<< HEAD
         expect(spaces.first.availability).to include ('SuperSaaS')
-=======
         expect(spaces.first.availability).to include '<script src="https://cdn.supersaas.net/widget.js"></script>'
->>>>>>> 6096c85582a924c5431fc33a31a3af8569319f63
+        expect(spaces.first.account_id).to eq 1
     end
 
    
